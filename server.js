@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const invoiceRoute = require('./routes/invoices');
 
 const app = express();
 
@@ -15,6 +16,8 @@ mongoose.connect(DB, {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/', invoiceRoute);
 
 app.get('/', (req, res) => {
     res.send('Connection successful');
