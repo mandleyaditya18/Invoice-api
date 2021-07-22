@@ -13,10 +13,19 @@ const invoiceSchema = new Schema({
         email: String,
         mobile: Number
     },
+    name: String,
+    email: String,
+    address: String,
+    phone: Number,
     work: {
         hours: Number,
         rate: Number,
-        amount: Number
+        amount: {
+            type: Number,
+            default: function() {
+                return this.hours * this.rate
+            }
+        }
     },
     expenses: {
         materials: [
@@ -24,17 +33,30 @@ const invoiceSchema = new Schema({
                 name: String,
                 quantity: Number,
                 rate: Number,
-                amount: Number
+                amount: {
+                    type: Number,
+                    default: function() {
+                        return this.quantity * this.rate
+                    }
+                }
             }
         ],
         laborAmount: Number
     },
     total: Number,
-    paymentMode: [],
+    paymentMode: {
+        type: String,
+        enum: ['debit card', 'credit card', 'net banking', 'cheque', 'demand draft', 'upi'],
+        lowercase: true
+    },
     dueDate: Date,
-    status: [paid, outstanding, late],
+    status: {
+        type: String,
+        enum: ['pending', 'paid'],
+        lowercase: true
+    },
     lateFeeRate: Number,
-    notes: []
+    notes: [String]
 });
 
 module.exports = mongoose.model('Invoice', invoiceSchema);
