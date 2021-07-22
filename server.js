@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const invoiceRoute = require('./routes/invoices');
+const { checkDues } = require('./middleware');
 
 const app = express();
 
@@ -16,6 +17,13 @@ mongoose.connect(DB, {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+let hours = 24;
+let mins = 60;
+
+setInterval(() => {
+    checkDues();
+}, hours * mins * 60 * 1000)
 
 app.use('/', invoiceRoute);
 
