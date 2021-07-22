@@ -6,4 +6,8 @@ router.route('/')
     .get(invoices.index)
     .post(invoices.createInvoice)
 
+router.route('/:id')
+    .get(invoices.showInvoice)
+    .patch(invoices.updateInvoice)
+
 module.exports = router;
