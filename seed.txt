@@ -1,0 +1,42 @@
+{
+    "invoiceNo": "Alpha123",
+    "orgName": "Kracken",
+    "orgAddress": "Kracken Villa, Asgard",
+    "orgContact" : {
+        "email": "kracken@asgard.com",
+        "mobile": 123456789
+    },
+    "name": "ABC XYZ",
+    "email": "abcxyz@gmail.com",
+    "address": "13 Street",
+    "phone": 1234567890,
+    "work": {
+        "hours": 8,
+        "rate": 600
+    },
+    "expenses": {
+        "materials": [
+            {
+                "name": "Bricks",
+                "quantity": 1000,
+                "rate": 15
+            },
+            {
+                "name": "Cement",
+                "quantity": 100,
+                "rate": 55
+            },
+            {
+                "name": "Wood",
+                "quantity": 15,
+                "rate": 1500
+            }
+        ],
+        "laborAmount": 3600
+    },
+    "total": 100000,
+    "paymentMode": "debit Card", // Available options = ['debit card', 'credit card', 'net banking', 'cheque', 'demand draft', 'upi']
+    "status": "Pending", // Available options = ['pending', 'paid']
+    "lateFeeRate": 500,
+    "notes": ["Late charge will be added", "T&C Applied"]
+}
